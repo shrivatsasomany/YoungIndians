@@ -6,6 +6,7 @@ import android.util.Log;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.loopj.android.http.JsonHttpResponseHandler;
+import com.youngindians.CallBacks.HTTPCallback;
 import com.youngindians.Models.Event;
 import com.youngindians.Models.User;
 
@@ -15,7 +16,12 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
-import Utils.ServerInfo;
+import com.youngindians.Utils.Check;
+import com.youngindians.Utils.CommonFunctions;
+import com.youngindians.Utils.Constants;
+import com.youngindians.Utils.ServerInfo;
+
+import cz.msebera.android.httpclient.Consts;
 import cz.msebera.android.httpclient.Header;
 
 /**
@@ -26,37 +32,52 @@ public class WebServerCommunication {
 
     private HTTPCallback callback;
     private Context context;
+    private CommonFunctions commonFunctions;
     private Gson gson = new Gson();
 
     public WebServerCommunication(HTTPCallback callback, Context context) {
         this.callback = callback;
         this.context = context;
+        this.commonFunctions = new CommonFunctions(context);
     }
 
-    public void getUsers(){
-        String url = ServerInfo.getInstance().getUsers_path();
-        Log.d("URL", url);
+    public void getInformation(int callCode){
+
+        if(Check.isNetworkAvailable(context)){
+
+            String url = commonFunctions.getUrl(callCode);
+            get(url, callCode);
+
+        }else {
+
+            callback.onFailure(Constants.CB_CODE_NO_INTERNET, callCode);
+        }
+
+    }
+
+    public void get(String url, final int callCode){
+
         YiRestClient.get(url, null, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[]headers, JSONArray response) {
-                Type type = new TypeToken<List<User>>(){}.getType();
-                ArrayList<User> users = gson.fromJson(response.toString(), type);
-                callback.onSuccess(users);
+
+                callback.onSuccess(response.toString(), callCode);
             }
         });
+
     }
 
-    public void getEvents() {
-        String url = ServerInfo.getInstance().getEvents_path();
-        Log.d("URL", url);
-        YiRestClient.get(url, null, new JsonHttpResponseHandler() {
-            @Override
-            public void onSuccess(int statusCode, Header[]headers, JSONArray response) {
-                Type type = new TypeToken<List<Event>>(){}.getType();
-                ArrayList<Event> events = gson.fromJson(response.toString(), type);
-                callback.onSuccess(events);
-            }
-        });
-    }
+
+//    public void getEvents() {
+//        Log.d("URL", url);
+//        YiRestClient.get(url, null, new JsonHttpResponseHandler() {
+//            @Override
+//            public void onSuccess(int statusCode, Header[]headers, JSONArray response) {
+//                Type type = new TypeToken<List<Event>>(){}.getType();
+//                ArrayList<Event> events = gson.fromJson(response.toString(), type);
+//                callback.onSuccess(events);
+//            }
+//        });
+//    }
 
 }

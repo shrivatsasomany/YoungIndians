@@ -19,7 +19,9 @@
         android:layout_marginRight="3dp"
         app:met_iconLeft="@drawable/ic_account_search_grey600_24dp"
         app:met_iconPadding="0dp"/>
-    <android.support.v7.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
+
+    <android.support.v7.widget.RecyclerView
+        xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/list"

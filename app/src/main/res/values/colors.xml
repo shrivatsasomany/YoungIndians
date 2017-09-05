@@ -5,4 +5,9 @@
     <color name="colorAccent">#FF4081</color>
     <color name="upcoming_card_title">#7986cb</color>
     <color name="upcoming_text_title">#e0e0e0</color>
+
+
+    <color name="dialog_horizontal_line_color_day_mode">#d0d0d0</color>
+    <color name="color_black">#000000</color>
+
 </resources>

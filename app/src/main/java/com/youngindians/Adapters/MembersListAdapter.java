@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
+import com.youngindians.CallBacks.MemberListAdapterCallBack;
 import com.youngindians.Fragments.MemberFragment.OnListFragmentInteractionListener;
 import com.youngindians.Fragments.dummy.DummyContent.DummyItem;
 import com.youngindians.Models.User;
@@ -27,14 +28,16 @@ import de.hdodenhof.circleimageview.CircleImageView;
  */
 public class MembersListAdapter extends RecyclerView.Adapter<MembersListAdapter.UserViewHolder> {
 
-    private final ArrayList<User> users;
+    private ArrayList<User> users;
     private final OnListFragmentInteractionListener mListener;
     private Context context;
+    private MemberListAdapterCallBack callBack;
 
-    public MembersListAdapter(Context context, ArrayList<User> users, OnListFragmentInteractionListener listener) {
-        this.users = users;
+    public MembersListAdapter(Context context, ArrayList<User> users, OnListFragmentInteractionListener listener, MemberListAdapterCallBack callBack) {
+            this.users = users;
         mListener = listener;
         this.context = context;
+        this.callBack = callBack;
     }
 
     @Override
@@ -45,7 +48,7 @@ public class MembersListAdapter extends RecyclerView.Adapter<MembersListAdapter.
     }
 
     @Override
-    public void onBindViewHolder(final UserViewHolder holder, int position) {
+    public void onBindViewHolder(final UserViewHolder holder, final int position) {
         holder.mItem = users.get(position);
         if(holder.mItem.getImage().equals("")) {
             holder.mItem.setImage("http://xyz.zyx/poop.jpg");
@@ -61,9 +64,11 @@ public class MembersListAdapter extends RecyclerView.Adapter<MembersListAdapter.
                     // Notify the active callbacks interface (the activity, if the
                     // fragment is attached to one) that an item has been selected.
                     mListener.onListFragmentInteraction(holder.mItem);
+                    callBack.onMemberListItemClick(position);
                 }
             }
         });
+
     }
 
     @Override
@@ -92,5 +97,10 @@ public class MembersListAdapter extends RecyclerView.Adapter<MembersListAdapter.
         public String toString() {
             return super.toString() + " '" + memberName.getText() + "'";
         }
+    }
+
+    public void updateList(ArrayList<User> list){
+        users = list;
+        notifyDataSetChanged();
     }
 }

@@ -1,4 +1,4 @@
-package Utils;
+package com.youngindians.Utils;
 
 /**
  * Created by shrivatsa on 14/08/17.
