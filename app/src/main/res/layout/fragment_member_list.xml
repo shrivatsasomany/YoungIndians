@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:name="com.youngindians.Fragments.MemberFragment"
+    android:padding="16dp"
+    android:layout_width="match_parent"
+    android:background="#f1f1f1"
+    android:layout_height="match_parent">
+    <com.rengwuxian.materialedittext.MaterialEditText
+        android:id="@+id/member_list_search"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Search"
+        android:layout_marginBottom="8dp"
+        android:layout_alignParentTop="true"
+        android:imeOptions="actionDone"
+        android:maxLines="1"
+        android:layout_marginRight="3dp"
+        app:met_iconLeft="@drawable/ic_account_search_grey600_24dp"
+        app:met_iconPadding="0dp"/>
+    <android.support.v7.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/list"
+        android:name="com.youngindians.Fragments.MemberFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/member_list_search"
+        app:layoutManager="LinearLayoutManager"
+        tools:context="com.youngindians.Fragments.MemberFragment"
+        tools:listitem="@layout/member_list_item" />
+</RelativeLayout>
+
