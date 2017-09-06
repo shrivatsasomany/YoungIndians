@@ -68,7 +68,8 @@
             android:layout_height="wrap_content"
             android:textColor="@color/color_black"
             android:textSize="@dimen/member_dialog_info_text_size"
-            android:drawablePadding="@dimen/drawable_padding"/>
+            android:drawablePadding="@dimen/drawable_padding"
+            android:drawableLeft="@drawable/icon_email24px"/>
 
         <TextView
             android:id="@+id/member_birthday_text_view_at_member_info_dialog"
@@ -76,7 +77,8 @@
             android:layout_height="wrap_content"
             android:textColor="@color/color_black"
             android:textSize="@dimen/member_dialog_info_text_size"
-            android:drawablePadding="@dimen/drawable_padding"/>
+            android:drawablePadding="@dimen/drawable_padding"
+            android:drawableLeft="@drawable/icon_birthday24px"/>
 
     </LinearLayout>
 
@@ -99,7 +101,8 @@
             android:layout_height="wrap_content"
             android:textColor="@color/color_black"
             android:drawablePadding="@dimen/drawable_padding"
-            android:textSize="@dimen/member_dialog_info_text_size"/>
+            android:textSize="@dimen/member_dialog_info_text_size"
+            android:drawableLeft="@drawable/icons_factory24px"/>
 
         <TextView
             android:id="@+id/member_designatin_text_view_at_member_info_dialog"
@@ -107,7 +110,8 @@
             android:layout_height="wrap_content"
             android:textColor="@color/color_black"
             android:drawablePadding="@dimen/drawable_padding"
-            android:textSize="@dimen/member_dialog_info_text_size"/>
+            android:textSize="@dimen/member_dialog_info_text_size"
+            android:drawableLeft="@drawable/icon_designation24px"/>
 
     </LinearLayout>
 

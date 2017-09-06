@@ -59,6 +59,8 @@ public class MemberFragment extends Fragment implements
     private TextView
             memberNameTV, memberPositionTV, memberEmailTV, memberBirthdayTV, memberCompanyTV, memberDesignationTV;
 
+    private CommonFunctions commonFunctions;
+
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
@@ -89,14 +91,9 @@ public class MemberFragment extends Fragment implements
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_member_list, container, false);
-        // Set the adapter
+
         context = view.getContext();
-        recyclerView = (RecyclerView) view.findViewById(R.id.list);
-        if (mColumnCount <= 1) {
-            recyclerView.setLayoutManager(new LinearLayoutManager(context));
-        } else {
-            recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
-        }
+        commonFunctions = new CommonFunctions(context);
 
         setViews(view);
         setOnClickListener();
@@ -105,6 +102,13 @@ public class MemberFragment extends Fragment implements
     }
 
     private void setViews(View view){
+
+        recyclerView = (RecyclerView) view.findViewById(R.id.list);
+        if (mColumnCount <= 1) {
+            recyclerView.setLayoutManager(new LinearLayoutManager(context));
+        } else {
+            recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
+        }
 
         memberListSearchET = (MaterialEditText) view.findViewById(R.id.member_list_search);
 
@@ -213,7 +217,7 @@ public class MemberFragment extends Fragment implements
             memberPositionTV.setText(user.getPosition());
         }
         memberEmailTV.setText(user.getEmail());
-        memberBirthdayTV.setText(user.getBirthday());
+        memberBirthdayTV.setText(commonFunctions.getBirthdayForCards(user.getBirthday()));
         memberCompanyTV.setText(user.getCompany());
         memberDesignationTV.setText(user.getDesignation());
 

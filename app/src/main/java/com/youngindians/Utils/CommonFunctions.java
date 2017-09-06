@@ -32,4 +32,17 @@ public class CommonFunctions {
 
         Log.d(tag, value);
     }
+
+    public String getBirthdayForCards(String bDayFromDB){
+
+        String [] dateArray = bDayFromDB.split("-");
+        DateAndTime dateAndTime = new DateAndTime();
+
+        String month = dateArray [1];
+        String day = dateArray [2].split("T")[0];
+
+        return dateAndTime.getDateByName(Integer.valueOf(day)) +
+                Constants.SPACE +
+                dateAndTime.getMonthByName(Integer.valueOf(month));
+    }
 }

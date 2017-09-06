@@ -11,4 +11,7 @@ public class Constants {
 
 
     public static int CB_CODE_NO_INTERNET = 1201;
+
+
+    public static String SPACE = " ";
 }
